@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="SapphireBootWPF.Control.CaptionButtons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SapphireBootWPF"
+             xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ChromeButtonControlTemplate"
+                         TargetType="Button">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"/>
+            </Border>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="SettingsButtonControlTemplate">
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                   local:MouseOver.HoverImageSource="settings_button_hover.png"
+                   Source="settings_button.png"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="MinimizeButtonControlTemplate">
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                   local:MouseOver.HoverImageSource="minimize_button_hover.bmp"
+                   Source="minimize_button.bmp"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CloseButtonControlTemplate">
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                   local:MouseOver.HoverImageSource="close_button_hover.bmp"
+                   Source="close_button.bmp"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    
+    <StackPanel Orientation="Horizontal">
+        <Button ContentTemplate="{StaticResource SettingsButtonControlTemplate}"
+                Template="{StaticResource ChromeButtonControlTemplate}"
+                x:Name="SettingsButton" Click="SettingsButton_Click"
+                Margin="4,0,0,0"/>
+        <Button ContentTemplate="{StaticResource MinimizeButtonControlTemplate}"
+                Template="{StaticResource ChromeButtonControlTemplate}"
+                x:Name="MinimizeButton" Click="MinimizeButton_Click"
+                Margin="4,0,0,0"/>
+        <Button ContentTemplate="{StaticResource CloseButtonControlTemplate}"
+                Template="{StaticResource ChromeButtonControlTemplate}"
+                x:Name="CloseButton" Click="CloseButton_Click"
+                Margin="4,0,0,0"/>
+    </StackPanel>
+</UserControl>

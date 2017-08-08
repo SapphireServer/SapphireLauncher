@@ -1,0 +1,147 @@
+﻿<Window x:Class="SapphireBootWPF.ServerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:SapphireBootWPF.Control"
+        xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+        xmlns:local="clr-namespace:SapphireBootWPF"
+        Title="FINAL FANTASY XIV: A Realm Reborn (Sapphire) Launcher" Height="581" Width="1024"
+        ResizeMode="CanMinimize" WindowStyle="None">
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="shell:WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <shell:WindowChrome ResizeBorderThickness="0"
+                                        CaptionHeight="28"
+                                        CornerRadius="10 10 0 0"
+                                        GlassFrameThickness="0"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="MainImg/window_background.png"/>
+                            </Border.Background>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28"/>
+                                    <RowDefinition Height="576"/>
+                                </Grid.RowDefinitions>
+                                <DockPanel x:Name="CaptionBar"
+                                           Grid.Row="0"
+                                           shell:WindowChrome.IsHitTestVisibleInChrome="False">
+                                    <Image Source="icon.bmp" Height="20" Margin="10,0,0,0"/>
+                                    <!-- TODO: Use the Window's actual Title property here. -->
+                                    <Label Content="Sapphire Launcher" Foreground="White"/>
+                                    <ctrl:CaptionButtons Margin="0,0,8,0" HorizontalAlignment="Right"/>
+                                </DockPanel>
+                                <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+
+    <!-- Server Panel -->
+    <StackPanel x:Name="ServerPanel">
+        <StackPanel.Background>
+            <ImageBrush ImageSource="AccountImg/background.png" Stretch="None"/>
+        </StackPanel.Background>
+        <StackPanel Orientation="Horizontal" Margin="29,145,-7,17" HorizontalAlignment="Center" Width="652">
+            <Image x:Name="textMarkerImage" Height="21" Width="25" Source="AccountImg/text_marker.png" Margin="0,-1,0,0"/>
+            <Label x:Name="infoLabel" Content="Please enter the URL of the server login site and set your FFXIV installation path and launch options." Foreground="White" Width="626" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="271,4,128,0" HorizontalAlignment="Center" Width="523">
+            <Label x:Name="lobbyLabel" Content="Server URL" Foreground="White" Width="101" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <TextBox x:Name="lobbyTextBox" Height="22" Width="234" Margin="21,0,0,0"/>
+            <Button x:Name="checkDataButton" VerticalAlignment="Center" Width="156" Margin="10,0,0,0" Click="checkDataButton_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border>
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage UriSource="AccountImg/btn_validity_check_i.png"/>
+                                </Image.Source>
+                                <local:MouseOver.HoverImageSource>
+                                    <BitmapImage UriSource="AccountImg/btn_validity_check_a.png"/>
+                                </local:MouseOver.HoverImageSource>
+                            </Image>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="260,4,211,0" HorizontalAlignment="Center" Width="429">
+            <Label x:Name="gamePathLabel" Content="Game Path" Foreground="White" Width="101" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <TextBox x:Name="gamePathTextBox" Height="22" Width="234" Margin="21,0,0,0" IsEnabled="False"/>
+            <Button x:Name="selectPathButton" VerticalAlignment="Center" Width="36" Margin="9,5,0,0" Height="18" Click="selectPathButton_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border>
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage UriSource="SettingsImg/btn_dots_i.png"/>
+                                </Image.Source>
+                                <local:MouseOver.HoverImageSource>
+                                    <BitmapImage UriSource="SettingsImg/btn_dots_a.png"/>
+                                </local:MouseOver.HoverImageSource>
+                            </Image>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
+            <Label x:Name="launchParamsLabel" Content="Launch params" Foreground="White" Width="99" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <TextBox x:Name="launchParamsTextBox" Height="22" Width="234" Margin="22,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
+            <Label x:Name="expansionLevelLabel" Content="Expansion" Foreground="White" Width="99" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <ComboBox x:Name="expansionLevelComboBox" Height="22" Width="234" Margin="22,0,0,0" IsReadOnly="True" SelectedIndex="1">
+                <ComboBoxItem Content="A Realm Reborn"/>
+                <ComboBoxItem Content="Heavensward"/>
+                <ComboBoxItem Content="Stormblood"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
+            <Label x:Name="languageLabel" Content="Language" Foreground="White" Width="99" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <ComboBox x:Name="languageComboBox" Height="22" Width="234" Margin="22,0,0,0" SelectedIndex="1">
+                <ComboBoxItem Content="日本語"/>
+                <ComboBoxItem Content="English"/>
+                <ComboBoxItem Content="Français"/>
+                <ComboBoxItem Content="Deutsch"/>
+            </ComboBox>
+        </StackPanel>
+
+        <Button x:Name="saveDataButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="206" Margin="409,18,409,0" Height="26" Click="saveDataButton_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border>
+                        <Image>
+                            <!-- TODO: Do some button graphic that says "save", next is a bit confusing -->
+                            <Image.Source>
+                                <BitmapImage UriSource="AccountImg/btn_next_i.png"/>
+                            </Image.Source>
+                            <local:MouseOver.HoverImageSource>
+                                <BitmapImage UriSource="AccountImg/btn_next_a.png"/>
+                            </local:MouseOver.HoverImageSource>
+                        </Image>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Label x:Name="errorLabel" Content="" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,12,0,0" FontFamily="Meiryo" Foreground="#FFDC0000"/>
+        <Button x:Name="backButton" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,12,0,0" FontFamily="Meiryo" Foreground="White" Cursor="Hand" FontSize="10.667" Click="backButton_Click">
+            <TextBlock TextDecorations="Underline"  TextOptions.TextFormattingMode="Display">back</TextBlock>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </StackPanel>
+</Window>
