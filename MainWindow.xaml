@@ -13,7 +13,7 @@
                 <Setter.Value>
                     <shell:WindowChrome ResizeBorderThickness="0"
                                         CaptionHeight="28"
-                                        CornerRadius="10 10 0 0"
+                                        CornerRadius="0 0 0 0"
                                         GlassFrameThickness="0"/>
                 </Setter.Value>
             </Setter>
@@ -32,9 +32,9 @@
                                 <DockPanel x:Name="CaptionBar"
                                            Grid.Row="0"
                                            shell:WindowChrome.IsHitTestVisibleInChrome="False">
-                                    <Image Source="icon.bmp" Height="20" Margin="10,0,0,0"/>
+                                    <Image Source="icon.bmp" Height="20" Margin="13,0,0,0"/>
                                     <!-- TODO: Use the Window's actual Title property here. -->
-                                    <Label Content="Sapphire Launcher" Foreground="White" Margin="0,3,0,0"/>
+                                    <Label Content="Sapphire Launcher" Foreground="White" Margin="3,3,0,0"/>
                                     <ctrl:CaptionButtons Margin="0,0,8,0" HorizontalAlignment="Right"/>
                                 </DockPanel>
                                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"/>
@@ -48,7 +48,7 @@
 
     <!-- Main Login Panel -->
     <StackPanel x:Name="MainPanel">
-        <WebBrowser x:Name="mainWebBrowser" Height="554" Source="http://google.com"/>
+        <WebBrowser x:Name="mainWebBrowser" Height="554" Margin="1,0,1,3"/>
 
     </StackPanel>
 

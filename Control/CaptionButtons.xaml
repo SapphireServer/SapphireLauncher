@@ -17,8 +17,8 @@
 
         <DataTemplate x:Key="SettingsButtonControlTemplate">
             <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                   local:MouseOver.HoverImageSource="settings_button_hover.png"
-                   Source="settings_button.png"/>
+                   local:MouseOver.HoverImageSource="settings_button_hover.bmp"
+                   Source="settings_button.bmp"/>
         </DataTemplate>
         
         <DataTemplate x:Key="MinimizeButtonControlTemplate">
