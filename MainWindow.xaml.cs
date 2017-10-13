@@ -1,49 +1,53 @@
-﻿using mshtml;
-using SapphireBootWPF.Properties;
-using System;
-using System.Security.Permissions;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace SapphireBootWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 	
-    public partial class MainWindow : Window
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	/// 	
+	public partial class MainWindow : Window
     {
-        public MainWindow()
+        [Conditional( "DEBUG" )]
+        private void EnableCefDebugging( )
         {
-            InitializeComponent();
-
-            mainWebBrowser.AllowDrop = false;
-            WebScriptApi api = new WebScriptApi(this);
-
-            mainWebBrowser.ObjectForScripting = api;
-
-            try
+            if ( !CefSharp.Cef.IsInitialized )
             {
-                mainWebBrowser.Navigate(new System.Uri(Properties.Settings.Default.WebServerUrl, UriKind.Absolute));
+                CefSharp.Cef.Initialize( new CefSharp.CefSettings
+                {
+                    RemoteDebuggingPort = 8080
+                } );
             }
-            catch (System.UriFormatException exc)
-            {
-                mainWebBrowser.Navigate("https://nothappening");
-            }
-            
-            mainWebBrowser.LoadCompleted += WebEvent_LoadCompleted;
         }
 
-        void WebEvent_LoadCompleted(object sender, NavigationEventArgs e)
+
+        public MainWindow()
         {
-            var document = (HTMLDocument)mainWebBrowser.Document;
-            string html = document.body.outerHTML;
-            if (html.Contains("ieframe.dll") || html.Contains("NewErrorPageTemplate.css") || html.Contains("<UL id=notConnectedTasks class=tasks "))
+            EnableCefDebugging( );
+
+            InitializeComponent( );
+
+            webBrowser.AllowDrop = false;
+
+            WebScriptApi api = new WebScriptApi( this );
+            webBrowser.RegisterJsObject( "external", api, new CefSharp.BindingOptions
             {
-                mainWebBrowser.NavigateToString(Properties.Resources.server);
-                return;
+                CamelCaseJavascriptNames = false
+            } );
+
+
+            webBrowser.Address = Properties.Settings.Default.WebServerUrl;
+
+            webBrowser.FrameLoadEnd += WebBrowser_FrameLoadEnd;
+        }
+
+        private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs e )
+        {
+            if ( e.HttpStatusCode != 200 )
+            {
+
             }
         }
 

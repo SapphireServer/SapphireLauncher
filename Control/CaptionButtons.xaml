@@ -16,25 +16,49 @@
         </ControlTemplate>
 
         <DataTemplate x:Key="SettingsButtonControlTemplate">
-            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                   local:MouseOver.HoverImageSource="settings_button_hover.png"
-                   Source="settings_button.png"/>
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True" Source="settings_button.png">
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger  Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Image.Source" Value="settings_button_hover.png" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="MinimizeButtonControlTemplate">
-            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                   local:MouseOver.HoverImageSource="minimize_button_hover.bmp"
-                   Source="minimize_button.bmp"/>
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True" Source="minimize_button.bmp">
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger  Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Image.Source" Value="minimize_button_hover.bmp" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </DataTemplate>
 
         <DataTemplate x:Key="CloseButtonControlTemplate">
-            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True"
-                   local:MouseOver.HoverImageSource="close_button_hover.bmp"
-                   Source="close_button.bmp"/>
+            <Image Height="20" Width="20" shell:WindowChrome.IsHitTestVisibleInChrome="True" Source="close_button.bmp">
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger  Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Image.Source" Value="close_button_hover.bmp" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </DataTemplate>
     </UserControl.Resources>
-    
-    
+
+
     <StackPanel Orientation="Horizontal">
         <Button ContentTemplate="{StaticResource SettingsButtonControlTemplate}"
                 Template="{StaticResource ChromeButtonControlTemplate}"
