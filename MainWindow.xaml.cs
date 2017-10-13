@@ -32,7 +32,10 @@ namespace SapphireBootWPF
             webBrowser.AllowDrop = false;
 
             WebScriptApi api = new WebScriptApi( this );
-            webBrowser.RegisterJsObject( "external", api, CefSharp.BindingOptions.DefaultBinder );
+            webBrowser.RegisterJsObject( "external", api, new CefSharp.BindingOptions
+            {
+                CamelCaseJavascriptNames = false
+            } );
 
 
             webBrowser.Address = Properties.Settings.Default.WebServerUrl;
