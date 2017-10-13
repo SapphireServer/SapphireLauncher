@@ -10,45 +10,45 @@ namespace SapphireBootWPF
 	/// 	
 	public partial class MainWindow : Window
     {
-		[Conditional("DEBUG")]
-		private void EnableCefDebugging()
-		{
-			if ( !CefSharp.Cef.IsInitialized )
-			{
-				CefSharp.Cef.Initialize( new CefSharp.CefSettings
-				{
-					RemoteDebuggingPort = 8080
-				} );
-			}
-		}
+        [Conditional( "DEBUG" )]
+        private void EnableCefDebugging( )
+        {
+            if ( !CefSharp.Cef.IsInitialized )
+            {
+                CefSharp.Cef.Initialize( new CefSharp.CefSettings
+                {
+                    RemoteDebuggingPort = 8080
+                } );
+            }
+        }
 
 
         public MainWindow()
         {
-			EnableCefDebugging();
+            EnableCefDebugging( );
 
-            InitializeComponent();
+            InitializeComponent( );
 
-			webBrowser.AllowDrop = false;
+            webBrowser.AllowDrop = false;
 
-			WebScriptApi api = new WebScriptApi(this);
-			webBrowser.RegisterJsObject( "external", api, CefSharp.BindingOptions.DefaultBinder );
+            WebScriptApi api = new WebScriptApi( this );
+            webBrowser.RegisterJsObject( "external", api, CefSharp.BindingOptions.DefaultBinder );
 
 
-			webBrowser.Address = Properties.Settings.Default.WebServerUrl;
+            webBrowser.Address = Properties.Settings.Default.WebServerUrl;
 
-			webBrowser.FrameLoadEnd += WebBrowser_FrameLoadEnd;
-		}
+            webBrowser.FrameLoadEnd += WebBrowser_FrameLoadEnd;
+        }
 
-		private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs e )
-		{
-			if ( e.HttpStatusCode != 200 )
-			{
-				
-			}
-		}
+        private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs e )
+        {
+            if ( e.HttpStatusCode != 200 )
+            {
 
-		class Win32WindowHelper : System.Windows.Forms.IWin32Window
+            }
+        }
+
+        class Win32WindowHelper : System.Windows.Forms.IWin32Window
         {
             private System.Windows.Interop.WindowInteropHelper interopHelper;
             public Win32WindowHelper(Window w)

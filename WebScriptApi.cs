@@ -46,7 +46,7 @@ namespace SapphireBootWPF
                 Properties.Settings.Default.ClientPath = openFileDialog.FileName;
 
             Properties.Settings.Default.Save();
-			window.webBrowser.GetBrowser( ).MainFrame.ExecuteJavaScriptAsync( string.Format( "updateClientPath({0})", Properties.Settings.Default.ClientPath ) );
+            //window.webBrowser.GetBrowser( ).MainFrame.ExecuteJavaScriptAsync( string.Format( "updateClientPath({0})", Properties.Settings.Default.ClientPath ) );
         }
 
         public void SaveWebServerUrl(string url)
@@ -57,7 +57,7 @@ namespace SapphireBootWPF
 
         public void Navigate(string url)
         {
-			window.webBrowser.Address = url;
+            window.webBrowser.Address = url;
 		}
 
         public void SwitchWindows()

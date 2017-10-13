@@ -80,28 +80,28 @@ namespace SapphireBootWPF
 
         private void saveDataButton_Click(object sender, RoutedEventArgs e)
         {
-			// todo: fix the race condition that occurs here because properties.settings isnt updated when cef uses webserverurl
+            // todo: fix the race condition that occurs here because properties.settings isnt updated when cef uses webserverurl
 
-			//var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-			//var uiTaskFactory = new TaskFactory(uiScheduler);
+            //var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            //var uiTaskFactory = new TaskFactory(uiScheduler);
 
-			//uiTaskFactory.StartNew(() =>
-			//{
-			Properties.Settings.Default.WebServerUrl = lobbyTextBox.Text;
+            //uiTaskFactory.StartNew(() =>
+            //{
+            Properties.Settings.Default.WebServerUrl = lobbyTextBox.Text;
             Properties.Settings.Default.ClientPath = gamePathTextBox.Text;
             Properties.Settings.Default.LaunchParams = launchParamsTextBox.Text;
             Properties.Settings.Default.ExpansionLevel = expansionLevelComboBox.SelectedIndex;
             Properties.Settings.Default.SavedLanguage = languageComboBox.SelectedIndex;
 
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Reload();
+            Properties.Settings.Default.Save( );
+            Properties.Settings.Default.Reload( );
             //});
 
-            MainWindow mainwindow = new MainWindow();
+            MainWindow mainwindow = new MainWindow( );
             mainwindow.Left = this.Left;
             mainwindow.Top = this.Top;
-            mainwindow.Show();
-            this.Close();
+            mainwindow.Show( );
+            this.Close( );
         }
     }
 }
