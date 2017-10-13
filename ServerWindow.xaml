@@ -62,12 +62,16 @@
                     <ControlTemplate>
                         <Border>
                             <Image>
-                                <Image.Source>
-                                    <BitmapImage UriSource="AccountImg/btn_validity_check_i.png"/>
-                                </Image.Source>
-                                <local:MouseOver.HoverImageSource>
-                                    <BitmapImage UriSource="AccountImg/btn_validity_check_a.png"/>
-                                </local:MouseOver.HoverImageSource>
+								<Image.Style>
+									<Style>
+										<Setter Property="Image.Source" Value="AccountImg/btn_validity_check_i.png" />
+										<Style.Triggers>
+											<Trigger  Property="Image.IsMouseOver" Value="True">
+												<Setter Property="Image.Source" Value="AccountImg/btn_validity_check_a.png" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</Image.Style>
                             </Image>
                         </Border>
                     </ControlTemplate>
@@ -82,12 +86,16 @@
                     <ControlTemplate>
                         <Border>
                             <Image>
-                                <Image.Source>
-                                    <BitmapImage UriSource="SettingsImg/btn_dots_i.png"/>
-                                </Image.Source>
-                                <local:MouseOver.HoverImageSource>
-                                    <BitmapImage UriSource="SettingsImg/btn_dots_a.png"/>
-                                </local:MouseOver.HoverImageSource>
+								<Image.Style>
+									<Style>
+										<Setter Property="Image.Source" Value="SettingsImg/btn_dots_i.png" />
+										<Style.Triggers>
+											<Trigger  Property="Image.IsMouseOver" Value="True">
+												<Setter Property="Image.Source" Value="SettingsImg/btn_dots_a.png" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+								</Image.Style>
                             </Image>
                         </Border>
                     </ControlTemplate>
@@ -122,13 +130,17 @@
                     <Border>
                         <Image>
                             <!-- TODO: Do some button graphic that says "save", next is a bit confusing -->
-                            <Image.Source>
-                                <BitmapImage UriSource="AccountImg/btn_next_i.png"/>
-                            </Image.Source>
-                            <local:MouseOver.HoverImageSource>
-                                <BitmapImage UriSource="AccountImg/btn_next_a.png"/>
-                            </local:MouseOver.HoverImageSource>
-                        </Image>
+							<Image.Style>
+								<Style>
+									<Setter Property="Image.Source" Value="AccountImg/btn_next_i.png" />
+									<Style.Triggers>
+										<Trigger  Property="Image.IsMouseOver" Value="True">
+											<Setter Property="Image.Source" Value="AccountImg/btn_next_a.png" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
                     </Border>
                 </ControlTemplate>
             </Button.Template>

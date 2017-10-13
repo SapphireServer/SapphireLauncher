@@ -1,53 +1,54 @@
-﻿using mshtml;
-using SapphireBootWPF.Properties;
-using System;
-using System.Security.Permissions;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace SapphireBootWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 	
-    public partial class MainWindow : Window
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	/// 	
+	public partial class MainWindow : Window
     {
+		[Conditional("DEBUG")]
+		private void EnableCefDebugging()
+		{
+			if ( !CefSharp.Cef.IsInitialized )
+			{
+				CefSharp.Cef.Initialize( new CefSharp.CefSettings
+				{
+					RemoteDebuggingPort = 8080
+				} );
+			}
+		}
+
+
         public MainWindow()
         {
+			EnableCefDebugging();
+
             InitializeComponent();
 
-            mainWebBrowser.AllowDrop = false;
-            WebScriptApi api = new WebScriptApi(this);
+			webBrowser.AllowDrop = false;
 
-            mainWebBrowser.ObjectForScripting = api;
+			WebScriptApi api = new WebScriptApi(this);
+			webBrowser.RegisterJsObject( "external", api, CefSharp.BindingOptions.DefaultBinder );
 
-            try
-            {
-                mainWebBrowser.Navigate(new System.Uri(Properties.Settings.Default.WebServerUrl, UriKind.Absolute));
-            }
-            catch (System.UriFormatException exc)
-            {
-                mainWebBrowser.Navigate("https://nothappening");
-            }
-            
-            mainWebBrowser.LoadCompleted += WebEvent_LoadCompleted;
-        }
 
-        void WebEvent_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            var document = (HTMLDocument)mainWebBrowser.Document;
-            string html = document.body.outerHTML;
-            if (html.Contains("ieframe.dll") || html.Contains("NewErrorPageTemplate.css") || html.Contains("<UL id=notConnectedTasks class=tasks "))
-            {
-                mainWebBrowser.NavigateToString(Properties.Resources.server);
-                return;
-            }
-        }
+			webBrowser.Address = Properties.Settings.Default.WebServerUrl;
 
-        class Win32WindowHelper : System.Windows.Forms.IWin32Window
+			webBrowser.FrameLoadEnd += WebBrowser_FrameLoadEnd;
+		}
+
+		private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs e )
+		{
+			if ( e.HttpStatusCode != 200 )
+			{
+				
+			}
+		}
+
+		class Win32WindowHelper : System.Windows.Forms.IWin32Window
         {
             private System.Windows.Interop.WindowInteropHelper interopHelper;
             public Win32WindowHelper(Window w)

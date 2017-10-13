@@ -6,6 +6,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using CefSharp.Wpf.Internals;
 
 namespace SapphireBootWPF
 {
@@ -45,7 +46,7 @@ namespace SapphireBootWPF
                 Properties.Settings.Default.ClientPath = openFileDialog.FileName;
 
             Properties.Settings.Default.Save();
-            window.mainWebBrowser.InvokeScript("updateClientPath", new String[] { Properties.Settings.Default.ClientPath });
+			window.webBrowser.GetBrowser( ).MainFrame.ExecuteJavaScriptAsync( string.Format( "updateClientPath({0})", Properties.Settings.Default.ClientPath ) );
         }
 
         public void SaveWebServerUrl(string url)
@@ -56,15 +57,8 @@ namespace SapphireBootWPF
 
         public void Navigate(string url)
         {
-            try
-            {
-                window.mainWebBrowser.Navigate(url);
-            }
-            catch (Exception)
-            {
-                System.Windows.MessageBox.Show("Please provide a valid URL.", "SapphireBoot");
-            }
-        }
+			window.webBrowser.Address = url;
+		}
 
         public void SwitchWindows()
         {
