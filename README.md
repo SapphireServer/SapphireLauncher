@@ -23,3 +23,6 @@ This is a FFXIV Launcher Made for the FINAL FANTASY XIV 4.0+ Server Emulator nam
 - Launch params: These are the Launch params (You should know what these are if you use this)
 - Expansion: This is the Expansion Level your Game Loads when Starting (You Must have the Expansion Downloaded) (ffxiv: ARR/A Realm Reborn, ex1: HW/Heavensward, ex2: SB/Stormblood)
 - Launguage: This is the Language the Game will Use
+
+##
+Final Fantasy XIV © 2010-2017 SQUARE ENIX CO., LTD. All Rights Reserved. We are not affiliated with SQUARE ENIX CO., LTD. in any way.
