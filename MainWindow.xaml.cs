@@ -10,23 +10,8 @@ namespace SapphireBootWPF
 	/// 	
 	public partial class MainWindow : Window
     {
-        [Conditional( "DEBUG" )]
-        private void EnableCefDebugging( )
-        {
-            if ( !CefSharp.Cef.IsInitialized )
-            {
-                CefSharp.Cef.Initialize( new CefSharp.CefSettings
-                {
-                    RemoteDebuggingPort = 8080
-                } );
-            }
-        }
-
-
         public MainWindow()
         {
-            EnableCefDebugging( );
-
             InitializeComponent( );
 
             webBrowser.AllowDrop = false;
