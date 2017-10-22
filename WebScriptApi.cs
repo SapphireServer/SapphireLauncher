@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SapphireBootWPF
@@ -56,11 +57,14 @@ namespace SapphireBootWPF
 
         public void SwitchWindows()
         {
-            ServerWindow nWindow = new ServerWindow();
-            nWindow.Left = window.Left;
-            nWindow.Top = window.Top;
-            nWindow.Show();
-            window.Close();
+            window.Dispatcher.Invoke( () =>
+            {
+                ServerWindow nWindow = new ServerWindow();
+                nWindow.Left = window.Left;
+                nWindow.Top = window.Top;
+                nWindow.Show();
+                window.Close();
+            } );
         }
     }
 }
