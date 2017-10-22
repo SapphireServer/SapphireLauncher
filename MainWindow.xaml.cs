@@ -30,6 +30,7 @@ namespace SapphireBootWPF
             InitializeComponent( );
 
             webBrowser.AllowDrop = false;
+            webBrowser.RequestHandler = new CefRequestHandler();
 
             WebScriptApi api = new WebScriptApi( this );
             webBrowser.RegisterJsObject( "external", api, new CefSharp.BindingOptions
