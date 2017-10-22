@@ -49,7 +49,7 @@
     </Window.Style>
 
     <!-- Main Login Panel -->
-    <StackPanel x:Name="MainPanel" Background="White">
+    <StackPanel x:Name="MainPanel">
 		<wpf:ChromiumWebBrowser x:Name="webBrowser" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="0" Height="553"/>
 	</StackPanel>
 
