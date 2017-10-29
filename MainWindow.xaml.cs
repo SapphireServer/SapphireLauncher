@@ -1,50 +1,31 @@
-﻿using mshtml;
-using SapphireBootWPF.Properties;
-using System;
-using System.Security.Permissions;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace SapphireBootWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 	
-    public partial class MainWindow : Window
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	/// 	
+	public partial class MainWindow : Window
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent( );
 
-            mainWebBrowser.AllowDrop = false;
-            WebScriptApi api = new WebScriptApi(this);
+            webBrowser.AllowDrop = false;
+            webBrowser.RequestHandler = new CefRequestHandler();
+            webBrowser.LoadHandler = new CefLoadHandler();
 
-            mainWebBrowser.ObjectForScripting = api;
-
-            try
+            WebScriptApi api = new WebScriptApi( this );
+            webBrowser.RegisterJsObject( "external", api, new CefSharp.BindingOptions
             {
-                mainWebBrowser.Navigate(new System.Uri(Properties.Settings.Default.WebServerUrl, UriKind.Absolute));
-            }
-            catch (System.UriFormatException exc)
-            {
-                mainWebBrowser.Navigate("https://nothappening");
-            }
-            
-            mainWebBrowser.LoadCompleted += WebEvent_LoadCompleted;
-        }
+                CamelCaseJavascriptNames = false
+            } );
 
-        void WebEvent_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            var document = (HTMLDocument)mainWebBrowser.Document;
-            string html = document.body.outerHTML;
-            if (html.Contains("ieframe.dll") || html.Contains("NewErrorPageTemplate.css") || html.Contains("<UL id=notConnectedTasks class=tasks "))
-            {
-                mainWebBrowser.NavigateToString(Properties.Resources.server);
-                return;
-            }
+
+            webBrowser.Address = Properties.Settings.Default.WebServerUrl;
         }
 
         class Win32WindowHelper : System.Windows.Forms.IWin32Window

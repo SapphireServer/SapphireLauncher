@@ -83,5 +83,17 @@ namespace SapphireBootWPF.Properties {
                 this["SavedLanguage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CloseOnLaunch {
+            get {
+                return ((bool)(this["CloseOnLaunch"]));
+            }
+            set {
+                this["CloseOnLaunch"] = value;
+            }
+        }
     }
 }

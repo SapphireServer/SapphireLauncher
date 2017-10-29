@@ -31,6 +31,7 @@ namespace SapphireBootWPF
             launchParamsTextBox.Text = Properties.Settings.Default.LaunchParams;
             expansionLevelComboBox.SelectedIndex = Properties.Settings.Default.ExpansionLevel;
             languageComboBox.SelectedIndex = Properties.Settings.Default.SavedLanguage;
+            launcherCloseOnLaunch.IsChecked = Properties.Settings.Default.CloseOnLaunch;
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -80,26 +81,29 @@ namespace SapphireBootWPF
 
         private void saveDataButton_Click(object sender, RoutedEventArgs e)
         {
-            var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            var uiTaskFactory = new TaskFactory(uiScheduler);
+            // todo: fix the race condition that occurs here because properties.settings isnt updated when cef uses webserverurl
 
-            uiTaskFactory.StartNew(() =>
-            {
-                Properties.Settings.Default.WebServerUrl = lobbyTextBox.Text;
-                Properties.Settings.Default.ClientPath = gamePathTextBox.Text;
-                Properties.Settings.Default.LaunchParams = launchParamsTextBox.Text;
-                Properties.Settings.Default.ExpansionLevel = expansionLevelComboBox.SelectedIndex;
-                Properties.Settings.Default.SavedLanguage = languageComboBox.SelectedIndex;
+            //var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            //var uiTaskFactory = new TaskFactory(uiScheduler);
 
-                Properties.Settings.Default.Save();
-                Properties.Settings.Default.Reload();
-            });
+            //uiTaskFactory.StartNew(() =>
+            //{
+            Properties.Settings.Default.WebServerUrl = lobbyTextBox.Text;
+            Properties.Settings.Default.ClientPath = gamePathTextBox.Text;
+            Properties.Settings.Default.LaunchParams = launchParamsTextBox.Text;
+            Properties.Settings.Default.ExpansionLevel = expansionLevelComboBox.SelectedIndex;
+            Properties.Settings.Default.SavedLanguage = languageComboBox.SelectedIndex;
+            Properties.Settings.Default.CloseOnLaunch = launcherCloseOnLaunch.IsChecked.Value;
 
-            MainWindow mainwindow = new MainWindow();
+            Properties.Settings.Default.Save( );
+            Properties.Settings.Default.Reload( );
+            //});
+
+            MainWindow mainwindow = new MainWindow( );
             mainwindow.Left = this.Left;
             mainwindow.Top = this.Top;
-            mainwindow.Show();
-            this.Close();
+            mainwindow.Show( );
+            this.Close( );
         }
     }
 }
