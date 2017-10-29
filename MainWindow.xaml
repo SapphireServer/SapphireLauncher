@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctrl="clr-namespace:SapphireBootWPF.Control"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
-        xmlns:local="clr-namespace:SapphireBootWPF"
-        Title="FINAL FANTASY XIV: A Realm Reborn (Sapphire) Launcher" Height="581" Width="1024"
+        xmlns:cef="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         Title="FINAL FANTASY XIV: Online (Sapphire) Launcher" Height="581" Width="1024"
         FontFamily="MS Gothic"
         ResizeMode="CanMinimize" WindowStyle="None">
@@ -49,8 +48,7 @@
 
     <!-- Main Login Panel -->
     <StackPanel x:Name="MainPanel">
-        <WebBrowser x:Name="mainWebBrowser" Height="554" Margin="1,0,1,3"/>
-
+        <cef:ChromiumWebBrowser x:Name="webBrowser" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="0" Height="554"/>
     </StackPanel>
 
 </Window>
