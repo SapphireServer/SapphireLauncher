@@ -5,6 +5,7 @@
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
         xmlns:local="clr-namespace:SapphireBootWPF"
         Title="FINAL FANTASY XIV: A Realm Reborn (Sapphire) Launcher" Height="581" Width="1024"
+        Title="FINAL FANTASY XIV: Online (Sapphire) Launcher" Height="581" Width="1024"
         FontFamily="MS Gothic"
         ResizeMode="CanMinimize" WindowStyle="None">
     <Window.Style>
