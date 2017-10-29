@@ -219,8 +219,8 @@
     <None Include="HTML\server.html" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Control\settings_button.png" />
-    <Resource Include="Control\settings_button_hover.png" />
+    <Resource Include="Control\settings_button.bmp" />
+    <Resource Include="Control\settings_button_hover.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
