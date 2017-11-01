@@ -17,6 +17,7 @@ namespace SapphireBootWPF
             webBrowser.AllowDrop = false;
             webBrowser.RequestHandler = new CefRequestHandler();
             webBrowser.LoadHandler = new CefLoadHandler();
+            webBrowser.FrameLoadEnd += WebBrowser_FrameLoadEnd;
 
             WebScriptApi api = new WebScriptApi( this );
             webBrowser.RegisterJsObject( "external", api, new CefSharp.BindingOptions
@@ -26,6 +27,17 @@ namespace SapphireBootWPF
 
 
             webBrowser.Address = Properties.Settings.Default.WebServerUrl;
+        }
+
+        private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs frameLoadEndArgs )
+        {
+            if ( frameLoadEndArgs.HttpStatusCode == 200 )
+            {
+                Dispatcher.Invoke( () =>
+                {
+                    Title = webBrowser.Title;
+                } );
+            }
         }
 
         class Win32WindowHelper : System.Windows.Forms.IWin32Window

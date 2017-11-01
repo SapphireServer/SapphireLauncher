@@ -4,7 +4,7 @@
         xmlns:ctrl="clr-namespace:SapphireBootWPF.Control"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
         xmlns:local="clr-namespace:SapphireBootWPF"
-        Title="FINAL FANTASY XIV: A Realm Reborn (Sapphire) Launcher" Height="581" Width="1024"
+        Title="FINAL FANTASY XIV: Online (Sapphire) Launcher Settings" Height="581" Width="1024"
         ResizeMode="CanMinimize" WindowStyle="None">
     <Window.Style>
         <Style TargetType="Window">
@@ -26,14 +26,14 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="28"/>
-                                    <RowDefinition Height="576"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <DockPanel x:Name="CaptionBar"
                                            Grid.Row="0"
                                            shell:WindowChrome.IsHitTestVisibleInChrome="False">
-                                    <Image Source="icon.bmp" Height="20" Margin="10,0,0,0"/>
+                                    <Image Source="icon.bmp" Height="20" Margin="13,0,0,0"/>
                                     <!-- TODO: Use the Window's actual Title property here. -->
-                                    <Label Content="Sapphire Launcher" Foreground="White"/>
+                                    <Label Content="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ServerWindow}}}" Foreground="White"/>
                                     <ctrl:CaptionButtons Margin="0,0,8,0" HorizontalAlignment="Right"/>
                                 </DockPanel>
                                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"/>
