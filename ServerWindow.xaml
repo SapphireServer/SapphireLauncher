@@ -124,7 +124,7 @@
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
-            <Label Content="Close On Launch" Foreground="White" Width="99" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
+            <Label Content="Close On Launch" Foreground="White" Width="110" FontFamily="Meiryo" TextOptions.TextFormattingMode="Display"/>
             <CheckBox x:Name="launcherCloseOnLaunch" Margin="22,5,0,0"></CheckBox>
         </StackPanel>
         <Button x:Name="saveDataButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="206" Margin="409,18,409,0" Height="26" Click="saveDataButton_Click">
