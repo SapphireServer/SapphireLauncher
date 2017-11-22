@@ -5,8 +5,9 @@ This is a FFXIV Launcher Made for the FINAL FANTASY XIV 4.0+ Server Emulator nam
 
 ## How to Compile
 1. Open the Project in Visual Stuido
-2. Change the Build Settings to Win32
-3. Right Click the Solution and Click Build Solution
+2. Change the Build Settings to Win32 If they are not Win32
+3. Right Click the Solution and Click Resotre NuGet Packages and Wait till it Finishes
+4. Right Click the Solution and Click Build Solution then Wait for it to Compile
 
 ## How to Connect to a Server Guide
 1. Click the Cog Next to the Close and Minimize Buttons on the Top Right of the Launcher (This is the Settings Button)
