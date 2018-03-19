@@ -119,7 +119,6 @@
             <ComboBox x:Name="languageComboBox" Height="22" Width="234" Margin="22,0,0,0" SelectedIndex="1">
                 <ComboBoxItem Content="日本語"/>
                 <ComboBoxItem Content="English"/>
-                <ComboBoxItem Content="Français"/>
                 <ComboBoxItem Content="Deutsch"/>
             </ComboBox>
         </StackPanel>
