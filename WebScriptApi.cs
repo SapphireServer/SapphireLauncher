@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,7 +21,7 @@ namespace SapphireBootWPF
                 BootClient.StartClient( sid, serverLobbyAddress, serverFrontierAddress );
                 if ( Properties.Settings.Default.CloseOnLaunch )
                 {
-                    Environment.Exit( 0 );
+                    Process.GetCurrentProcess().Kill();
                 }
             }
             catch ( Exception ex )
