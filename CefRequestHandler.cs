@@ -9,7 +9,19 @@ namespace SapphireBootWPF
         public bool OnBeforeBrowse( IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect )
         {
             var destUrl = new Uri( request.Url );
-            var frontierUrl = new Uri( Properties.Settings.Default.WebServerUrl );
+
+            Uri frontierUrl = null;
+
+            try
+            {
+                frontierUrl = new Uri( Properties.Settings.Default.WebServerUrl );
+            }
+            // don't really care if it's invalid format/argumentnull exceptions
+            catch( Exception ex )
+            {
+                System.Diagnostics.Trace.TraceError( ex.Message );
+                return false;
+            }
 
             // if hosts don't match, open url in users browser
             if ( destUrl.Host != frontierUrl.Host )
