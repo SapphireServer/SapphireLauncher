@@ -27,6 +27,8 @@ namespace SapphireBootWPF
 
 
             webBrowser.Address = Properties.Settings.Default.WebServerUrl;
+
+            webBrowser.Focus();
         }
 
         private void WebBrowser_FrameLoadEnd( object sender, CefSharp.FrameLoadEndEventArgs frameLoadEndArgs )
