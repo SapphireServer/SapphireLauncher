@@ -24,7 +24,7 @@ namespace SapphireBootWPF
                 "DEV.LobbyHost04={1} DEV.LobbyPort04=54994 " +
                 "DEV.LobbyHost05={1} DEV.LobbyPort05=54994 " +
                 "DEV.LobbyHost06={1} DEV.LobbyPort06=54994 " +
-                "SYS.Region=0 language={2} version=1.0.0.0 DEV.MaxEntitledExpansionID={3} DEV.GMServerHost={4} {5}",
+                "SYS.Region=3 language={2} version=1.0.0.0 DEV.MaxEntitledExpansionID={3} DEV.GMServerHost={4} {5}",
                 sessionId, serverLobbyAddress, Settings.Default.SavedLanguage, Settings.Default.ExpansionLevel, serverFrontierAddress, Settings.Default.LaunchParams);
             Process proc = Process.Start(Settings.Default.ClientPath, args);
         }
