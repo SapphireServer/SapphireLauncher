@@ -120,6 +120,7 @@
                 <ComboBoxItem Content="日本語"/>
                 <ComboBoxItem Content="English"/>
                 <ComboBoxItem Content="Deutsch"/>
+                <ComboBoxItem Content="Français"/>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
