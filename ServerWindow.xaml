@@ -112,6 +112,7 @@
                 <ComboBoxItem Content="A Realm Reborn"/>
                 <ComboBoxItem Content="Heavensward"/>
                 <ComboBoxItem Content="Stormblood"/>
+                <ComboBoxItem Content="Shadowbringers"/>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="260,4,241,0" HorizontalAlignment="Center" Width="397">
