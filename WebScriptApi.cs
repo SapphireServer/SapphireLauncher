@@ -14,11 +14,11 @@ namespace SapphireBootWPF
             this.window = window;
         }
 
-        public void Boot( string sid, string serverLobbyAddress, string serverFrontierAddress )
+        public void Boot( string sid, string serverLobbyAddress, string serverFrontierAddress, int serverLobbyPort = 54994 )
         {
             try
             {
-                BootClient.StartClient( sid, serverLobbyAddress, serverFrontierAddress );
+                BootClient.StartClient( sid, serverLobbyAddress, serverFrontierAddress, serverLobbyPort );
                 if ( Properties.Settings.Default.CloseOnLaunch )
                 {
                     Process.GetCurrentProcess().Kill();
